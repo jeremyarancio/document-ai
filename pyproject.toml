@@ -11,14 +11,14 @@ dependencies = [
     "addict>=2.4.0",
     "easydict>=1.13",
     "einops>=0.8.2",
-    "flash-attn>=2.8.3",
     "matplotlib>=3.10.8",
     "pillow>=12.1.0",
     "pypdfium2>=5.3.0",
     "requests>=2.32.5",
-    "torch>=2.10.0",
-    "torchvision>=0.25.0",
-    "transformers<5.0",
+    "tokenizers==0.20.3",
+    "torch==2.6.0",
+    "torchvision>=0.21.0",
+    "transformers==4.46.3",
 ]
 
 [project.scripts]
@@ -34,9 +34,3 @@ build-backend = "hatchling.build"
 dev = [
     "ipykernel>=7.1.0",
 ]
-
-[tool.uv.extra-build-dependencies]
-flash-attn = [{ requirement = "torch", match-runtime = true }]
-
-[tool.uv.extra-build-variables]
-flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "FALSE" }
