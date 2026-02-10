@@ -8,18 +8,35 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "addict>=2.4.0",
+    "easydict>=1.13",
+    "einops>=0.8.2",
+    "flash-attn>=2.8.3",
+    "matplotlib>=3.10.8",
+    "pillow>=12.1.0",
     "pypdfium2>=5.3.0",
-    "unsloth>=2026.1.4",
+    "requests>=2.32.5",
+    "torch>=2.10.0",
+    "torchvision>=0.25.0",
+    "transformers<5.0",
 ]
 
 [project.scripts]
 document-ai = "document_ai:main"
 
+
 [build-system]
-requires = ["uv_build>=0.8.2,<0.9.0"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 
 [dependency-groups]
 dev = [
     "ipykernel>=7.1.0",
 ]
+
+[tool.uv.extra-build-dependencies]
+flash-attn = [{ requirement = "torch", match-runtime = true }]
+
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "FALSE" }
