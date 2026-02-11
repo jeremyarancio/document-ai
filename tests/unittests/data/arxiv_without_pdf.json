@@ -1,0 +1,457 @@
+{
+    "feed": {
+        "@xmlns:opensearch": "http://a9.com/-/spec/opensearch/1.1/",
+        "@xmlns:arxiv": "http://arxiv.org/schemas/atom",
+        "@xmlns": "http://www.w3.org/2005/Atom",
+        "id": "https://arxiv.org/api/XmawdzYNiaQeARfhkzTi20BEWGE",
+        "title": "arXiv Query: search_query=all:deepseek&id_list=&start=0&max_results=3",
+        "updated": "2026-02-11T15:14:14Z",
+        "link": {
+            "@href": "https://arxiv.org/api/query?search_query=all:deepseek&start=0&max_results=3&id_list=",
+            "@type": "application/atom+xml"
+        },
+        "opensearch:itemsPerPage": "3",
+        "opensearch:totalResults": "1736",
+        "opensearch:startIndex": "0",
+        "entry": [
+            {
+                "id": "http://arxiv.org/abs/2505.02390v2",
+                "title": "Quantitative Analysis of Performance Drop in DeepSeek Model Quantization",
+                "updated": "2025-06-13T06:25:10Z",
+                "link": [
+                    {
+                        "@href": "https://arxiv.org/abs/2505.02390v2",
+                        "@rel": "alternate",
+                        "@type": "text/html"
+                    }
+                ],
+                "summary": "Recently, there is a high demand for deploying DeepSeek-R1 and V3 locally, possibly because the official service often suffers from being busy and some organizations have data privacy concerns. While single-machine deployment offers infrastructure simplicity, the models' 671B FP8 parameter configuration exceeds the practical memory limits of a standard 8-GPU machine. Quantization is a widely used technique that helps reduce model memory consumption. However, it is unclear what the performance of DeepSeek-R1 and V3 will be after being quantized. This technical report presents the first quantitative evaluation of multi-bitwidth quantization across the complete DeepSeek model spectrum. Key findings reveal that 4-bit quantization maintains little performance degradation versus FP8 while enabling single-machine deployment on standard NVIDIA GPU devices. We further propose DQ3_K_M, a dynamic 3-bit quantization method that significantly outperforms traditional Q3_K_M variant on various benchmarks, which is also comparable with 4-bit quantization (Q4_K_M) approach in most tasks. Moreover, DQ3_K_M supports single-machine deployment configurations for both NVIDIA H100/A100 and Huawei 910B. Our implementation of DQ3\\_K\\_M is released at https://github.com/UnicomAI/DeepSeek-Eval, containing optimized 3-bit quantized variants of both DeepSeek-R1 and DeepSeek-V3.",
+                "category": [
+                    {
+                        "@term": "cs.LG",
+                        "@scheme": "http://arxiv.org/schemas/atom"
+                    },
+                    {
+                        "@term": "cs.AI",
+                        "@scheme": "http://arxiv.org/schemas/atom"
+                    }
+                ],
+                "published": "2025-05-05T06:25:20Z",
+                "arxiv:comment": "This version added the results of DeepSeek-V3-0324",
+                "arxiv:primary_category": {
+                    "@term": "cs.LG"
+                },
+                "author": [
+                    {
+                        "name": "Enbo Zhao"
+                    },
+                    {
+                        "name": "Yi Shen"
+                    },
+                    {
+                        "name": "Shuming Shi"
+                    },
+                    {
+                        "name": "Jieyun Huang"
+                    },
+                    {
+                        "name": "Zhihao Chen"
+                    },
+                    {
+                        "name": "Ning Wang"
+                    },
+                    {
+                        "name": "Siqi Xiao"
+                    },
+                    {
+                        "name": "Jian Zhang"
+                    },
+                    {
+                        "name": "Kai Wang"
+                    },
+                    {
+                        "name": "Shiguo Lian"
+                    }
+                ]
+            },
+            {
+                "id": "http://arxiv.org/abs/2403.05525v2",
+                "title": "DeepSeek-VL: Towards Real-World Vision-Language Understanding",
+                "updated": "2024-03-11T16:47:41Z",
+                "link": [
+                    {
+                        "@href": "https://arxiv.org/abs/2403.05525v2",
+                        "@rel": "alternate",
+                        "@type": "text/html"
+                    },
+                    {
+                        "@href": "https://arxiv.org/pdf/2403.05525v2",
+                        "@rel": "related",
+                        "@type": "application/pdf",
+                        "@title": "pdf"
+                    }
+                ],
+                "summary": "We present DeepSeek-VL, an open-source Vision-Language (VL) Model designed for real-world vision and language understanding applications. Our approach is structured around three key dimensions:\n  We strive to ensure our data is diverse, scalable, and extensively covers real-world scenarios including web screenshots, PDFs, OCR, charts, and knowledge-based content, aiming for a comprehensive representation of practical contexts. Further, we create a use case taxonomy from real user scenarios and construct an instruction tuning dataset accordingly. The fine-tuning with this dataset substantially improves the model's user experience in practical applications. Considering efficiency and the demands of most real-world scenarios, DeepSeek-VL incorporates a hybrid vision encoder that efficiently processes high-resolution images (1024 x 1024), while maintaining a relatively low computational overhead. This design choice ensures the model's ability to capture critical semantic and detailed information across various visual tasks. We posit that a proficient Vision-Language Model should, foremost, possess strong language abilities. To ensure the preservation of LLM capabilities during pretraining, we investigate an effective VL pretraining strategy by integrating LLM training from the beginning and carefully managing the competitive dynamics observed between vision and language modalities.\n  The DeepSeek-VL family (both 1.3B and 7B models) showcases superior user experiences as a vision-language chatbot in real-world applications, achieving state-of-the-art or competitive performance across a wide range of visual-language benchmarks at the same model size while maintaining robust performance on language-centric benchmarks. We have made both 1.3B and 7B models publicly accessible to foster innovations based on this foundation model.",
+                "category": {
+                    "@term": "cs.AI",
+                    "@scheme": "http://arxiv.org/schemas/atom"
+                },
+                "published": "2024-03-08T18:46:00Z",
+                "arxiv:comment": "https://github.com/deepseek-ai/DeepSeek-VL",
+                "arxiv:primary_category": {
+                    "@term": "cs.AI"
+                },
+                "author": [
+                    {
+                        "name": "Haoyu Lu"
+                    },
+                    {
+                        "name": "Wen Liu"
+                    },
+                    {
+                        "name": "Bo Zhang"
+                    },
+                    {
+                        "name": "Bingxuan Wang"
+                    },
+                    {
+                        "name": "Kai Dong"
+                    },
+                    {
+                        "name": "Bo Liu"
+                    },
+                    {
+                        "name": "Jingxiang Sun"
+                    },
+                    {
+                        "name": "Tongzheng Ren"
+                    },
+                    {
+                        "name": "Zhuoshu Li"
+                    },
+                    {
+                        "name": "Hao Yang"
+                    },
+                    {
+                        "name": "Yaofeng Sun"
+                    },
+                    {
+                        "name": "Chengqi Deng"
+                    },
+                    {
+                        "name": "Hanwei Xu"
+                    },
+                    {
+                        "name": "Zhenda Xie"
+                    },
+                    {
+                        "name": "Chong Ruan"
+                    }
+                ]
+            },
+            {
+                "id": "http://arxiv.org/abs/2401.02954v1",
+                "title": "DeepSeek LLM: Scaling Open-Source Language Models with Longtermism",
+                "updated": "2024-01-05T18:59:13Z",
+                "link": [
+                    {
+                        "@href": "https://arxiv.org/abs/2401.02954v1",
+                        "@rel": "alternate",
+                        "@type": "text/html"
+                    },
+                    {
+                        "@href": "https://arxiv.org/pdf/2401.02954v1",
+                        "@rel": "related",
+                        "@type": "application/pdf",
+                        "@title": "pdf"
+                    }
+                ],
+                "summary": "The rapid development of open-source large language models (LLMs) has been truly remarkable. However, the scaling law described in previous literature presents varying conclusions, which casts a dark cloud over scaling LLMs. We delve into the study of scaling laws and present our distinctive findings that facilitate scaling of large scale models in two commonly used open-source configurations, 7B and 67B. Guided by the scaling laws, we introduce DeepSeek LLM, a project dedicated to advancing open-source language models with a long-term perspective. To support the pre-training phase, we have developed a dataset that currently consists of 2 trillion tokens and is continuously expanding. We further conduct supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) on DeepSeek LLM Base models, resulting in the creation of DeepSeek Chat models. Our evaluation results demonstrate that DeepSeek LLM 67B surpasses LLaMA-2 70B on various benchmarks, particularly in the domains of code, mathematics, and reasoning. Furthermore, open-ended evaluations reveal that DeepSeek LLM 67B Chat exhibits superior performance compared to GPT-3.5.",
+                "category": [
+                    {
+                        "@term": "cs.CL",
+                        "@scheme": "http://arxiv.org/schemas/atom"
+                    },
+                    {
+                        "@term": "cs.AI",
+                        "@scheme": "http://arxiv.org/schemas/atom"
+                    },
+                    {
+                        "@term": "cs.LG",
+                        "@scheme": "http://arxiv.org/schemas/atom"
+                    }
+                ],
+                "published": "2024-01-05T18:59:13Z",
+                "arxiv:primary_category": {
+                    "@term": "cs.CL"
+                },
+                "author": [
+                    {
+                        "name": "DeepSeek-AI"
+                    },
+                    {
+                        "name": ":"
+                    },
+                    {
+                        "name": "Xiao Bi"
+                    },
+                    {
+                        "name": "Deli Chen"
+                    },
+                    {
+                        "name": "Guanting Chen"
+                    },
+                    {
+                        "name": "Shanhuang Chen"
+                    },
+                    {
+                        "name": "Damai Dai"
+                    },
+                    {
+                        "name": "Chengqi Deng"
+                    },
+                    {
+                        "name": "Honghui Ding"
+                    },
+                    {
+                        "name": "Kai Dong"
+                    },
+                    {
+                        "name": "Qiushi Du"
+                    },
+                    {
+                        "name": "Zhe Fu"
+                    },
+                    {
+                        "name": "Huazuo Gao"
+                    },
+                    {
+                        "name": "Kaige Gao"
+                    },
+                    {
+                        "name": "Wenjun Gao"
+                    },
+                    {
+                        "name": "Ruiqi Ge"
+                    },
+                    {
+                        "name": "Kang Guan"
+                    },
+                    {
+                        "name": "Daya Guo"
+                    },
+                    {
+                        "name": "Jianzhong Guo"
+                    },
+                    {
+                        "name": "Guangbo Hao"
+                    },
+                    {
+                        "name": "Zhewen Hao"
+                    },
+                    {
+                        "name": "Ying He"
+                    },
+                    {
+                        "name": "Wenjie Hu"
+                    },
+                    {
+                        "name": "Panpan Huang"
+                    },
+                    {
+                        "name": "Erhang Li"
+                    },
+                    {
+                        "name": "Guowei Li"
+                    },
+                    {
+                        "name": "Jiashi Li"
+                    },
+                    {
+                        "name": "Yao Li"
+                    },
+                    {
+                        "name": "Y. K. Li"
+                    },
+                    {
+                        "name": "Wenfeng Liang"
+                    },
+                    {
+                        "name": "Fangyun Lin"
+                    },
+                    {
+                        "name": "A. X. Liu"
+                    },
+                    {
+                        "name": "Bo Liu"
+                    },
+                    {
+                        "name": "Wen Liu"
+                    },
+                    {
+                        "name": "Xiaodong Liu"
+                    },
+                    {
+                        "name": "Xin Liu"
+                    },
+                    {
+                        "name": "Yiyuan Liu"
+                    },
+                    {
+                        "name": "Haoyu Lu"
+                    },
+                    {
+                        "name": "Shanghao Lu"
+                    },
+                    {
+                        "name": "Fuli Luo"
+                    },
+                    {
+                        "name": "Shirong Ma"
+                    },
+                    {
+                        "name": "Xiaotao Nie"
+                    },
+                    {
+                        "name": "Tian Pei"
+                    },
+                    {
+                        "name": "Yishi Piao"
+                    },
+                    {
+                        "name": "Junjie Qiu"
+                    },
+                    {
+                        "name": "Hui Qu"
+                    },
+                    {
+                        "name": "Tongzheng Ren"
+                    },
+                    {
+                        "name": "Zehui Ren"
+                    },
+                    {
+                        "name": "Chong Ruan"
+                    },
+                    {
+                        "name": "Zhangli Sha"
+                    },
+                    {
+                        "name": "Zhihong Shao"
+                    },
+                    {
+                        "name": "Junxiao Song"
+                    },
+                    {
+                        "name": "Xuecheng Su"
+                    },
+                    {
+                        "name": "Jingxiang Sun"
+                    },
+                    {
+                        "name": "Yaofeng Sun"
+                    },
+                    {
+                        "name": "Minghui Tang"
+                    },
+                    {
+                        "name": "Bingxuan Wang"
+                    },
+                    {
+                        "name": "Peiyi Wang"
+                    },
+                    {
+                        "name": "Shiyu Wang"
+                    },
+                    {
+                        "name": "Yaohui Wang"
+                    },
+                    {
+                        "name": "Yongji Wang"
+                    },
+                    {
+                        "name": "Tong Wu"
+                    },
+                    {
+                        "name": "Y. Wu"
+                    },
+                    {
+                        "name": "Xin Xie"
+                    },
+                    {
+                        "name": "Zhenda Xie"
+                    },
+                    {
+                        "name": "Ziwei Xie"
+                    },
+                    {
+                        "name": "Yiliang Xiong"
+                    },
+                    {
+                        "name": "Hanwei Xu"
+                    },
+                    {
+                        "name": "R. X. Xu"
+                    },
+                    {
+                        "name": "Yanhong Xu"
+                    },
+                    {
+                        "name": "Dejian Yang"
+                    },
+                    {
+                        "name": "Yuxiang You"
+                    },
+                    {
+                        "name": "Shuiping Yu"
+                    },
+                    {
+                        "name": "Xingkai Yu"
+                    },
+                    {
+                        "name": "B. Zhang"
+                    },
+                    {
+                        "name": "Haowei Zhang"
+                    },
+                    {
+                        "name": "Lecong Zhang"
+                    },
+                    {
+                        "name": "Liyue Zhang"
+                    },
+                    {
+                        "name": "Mingchuan Zhang"
+                    },
+                    {
+                        "name": "Minghua Zhang"
+                    },
+                    {
+                        "name": "Wentao Zhang"
+                    },
+                    {
+                        "name": "Yichao Zhang"
+                    },
+                    {
+                        "name": "Chenggang Zhao"
+                    },
+                    {
+                        "name": "Yao Zhao"
+                    },
+                    {
+                        "name": "Shangyan Zhou"
+                    },
+                    {
+                        "name": "Shunfeng Zhou"
+                    },
+                    {
+                        "name": "Qihao Zhu"
+                    },
+                    {
+                        "name": "Yuheng Zou"
+                    }
+                ]
+            }
+        ]
+    }
+}
