@@ -6,7 +6,7 @@ from document_ai.domain.document import Document
 
 class _Link(BaseModel):
     link: Annotated[HttpUrl, Field(validation_alias="@href")]
-    mime_type: Annotated[str, Field(validation_alias="@type")]
+    mime_type: Annotated[str | None, Field(default=None, validation_alias="@type")]
 
 
 def _ensure_pdf_exists(links: list[_Link]) -> list[_Link]:
@@ -40,4 +40,5 @@ class ArxivDocuments(BaseModel):
             )
             for entry in self.feed.entries
             for link in entry.links
+            if link.mime_type == "application/pdf"
         ]

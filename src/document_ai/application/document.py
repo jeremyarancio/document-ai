@@ -7,7 +7,7 @@ logger = get_logger()
 
 class DocumentService:
     @staticmethod
-    def pull_documents(
+    def download_documents(
         query: str,
         limit: int,
         docsource_service: IDocumentSourceService,
