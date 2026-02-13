@@ -13,6 +13,10 @@ def download_arxiv_papers() -> None:
         storage_service=dependencies.get_storage_service(
             storage_dir=settings.storage.dir
         ),
+        database_service=dependencies.get_db_service(
+            db_path=settings.db.path,
+            document_table_name=settings.db.document_table_name,
+        ),
     )
 
 

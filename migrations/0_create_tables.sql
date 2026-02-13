@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS documents (
+    id UUID PRIMARY KEY,
+    filename VARCHAR NOT NULL UNIQUE,
+    storage_path VARCHAR NOT NULL,
+);
