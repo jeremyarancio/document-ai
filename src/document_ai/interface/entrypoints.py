@@ -18,7 +18,3 @@ def download_arxiv_papers() -> None:
             document_table_name=settings.db.document_table_name,
         ),
     )
-
-
-if __name__ == "__main__":
-    download_arxiv_papers()

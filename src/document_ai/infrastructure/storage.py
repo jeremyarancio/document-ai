@@ -38,6 +38,3 @@ class LocalStorageService(IStorageService):
                 )
             )
         return stored_documents
-
-    def pull_documents(self) -> list[StoredDocument]:
-        pass
