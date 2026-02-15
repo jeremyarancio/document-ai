@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import httpx
+from PIL.Image import Image
 
 from document_ai.application.ports.storage import IStorageService
 from document_ai.domain.document import Document, StoredDocument

@@ -1,11 +1,10 @@
-from pathlib import Path
-from tempfile import TemporaryDirectory
 from PIL.Image import Image
 
 from document_ai.application.core.utils import pdf2image
 from document_ai.application.ports.database import IDBService
 from document_ai.application.ports.parser import IParserService
 from document_ai.application.ports.storage import IStorageService
+from document_ai.domain.document import Figure, Markdown, Page
 
 
 class ParserService:
@@ -15,22 +14,45 @@ class ParserService:
         database_service: IDBService,
         parser_service: IParserService,
     ) -> None:
-        markdowns: list[str] = []
-        pages_with_boxes: list[Image] = []
-        pages_figures: list[list[Image]] = []
 
         documents = database_service.get_all_documents()
         for document in documents:
-            pages = pdf2image.convert_pdf_to_images(filepath=document.storage_path)
-            for page in pages:
-                with TemporaryDirectory() as tempdir:
-                    tempdir_ = Path(tempdir)
-                    markdown, page_with_boxes, figures = parser_service.parse(
-                        page=page, dir=tempdir_
-                    )
-                    markdowns.append(markdown)
-                    pages_with_boxes.append(page_with_boxes)
-                    pages_figures.append(figures)
-        storage_service.store_markdowns(markdowns=markdowns)
-        storage_service.store_figures(pages_figures=pages_figures)
-        storage_service.store_pages_with_boxes(pages_with_boxes=pages_with_boxes)
+            # We save data and images respectively in db and storage per document iteration
+            pages: list[Page] = []
+            markdowns: list[Markdown] = []
+            figures: list[Figure] = []
+
+            page_with_boxes_imgs: list[Image] = []
+            figure_imgs: list[Image] = []
+
+            page_imgs = pdf2image.convert_pdf_to_images(filepath=document.storage_path)
+            
+            for page_n, page_img in enumerate(page_imgs):
+                content, page_with_boxes_img, page_figure_imgs = parser_service.parse(
+                    page_img=page_img
+                )
+
+                # Entities -> DB
+                page = Page(document_id=document.id_, n=page_n)
+                pages.append(page)
+                markdowns.append(Markdown(document_id=document.id_, text=content))
+                figures.extend(
+                    [
+                        Figure(page_id=page.id_, n=figure_n)
+                        for figure_n, _ in enumerate(figure_imgs)
+                    ]
+                )
+
+                # Images -> Storage
+                page_with_boxes_imgs.append(page_with_boxes_img)
+                figure_imgs.extend(page_figure_imgs)
+
+            database_service.add_pages(pages=pages)
+            database_service.add_markdowns(markdowns=markdowns)
+            database_service.add_figures(figures=figures)
+            
+            storage_service.store_page_with_boxes_imgs(
+                pages=pages, pages_with_boxes_imgs=page_with_boxes_imgs
+            )
+            storage_service.store_figure_imgs(figures=figures, figure_imgs=figure_imgs)
+

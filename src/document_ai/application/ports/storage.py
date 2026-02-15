@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from PIL.Image import Image
 
-from document_ai.domain.document import Document, StoredDocument
+from document_ai.domain.document import Document, Figure, Page, StoredDocument
 
 
 class IStorageService(ABC):
@@ -10,13 +10,9 @@ class IStorageService(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def store_markdowns(self, markdowns: list[str]) -> None:
+    def store_figure_imgs(self, figures: list[Figure], figure_imgs: list[Image]) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def store_figures(self, pages_figures: list[list[Image]]) -> None:
-        raise NotImplementedError
-
-    @abstractmethod
-    def store_pages_with_boxes(self, pages_with_boxes: list[Image]) -> None:
+    def store_page_with_boxes_imgs(self, pages:list[Page], pages_with_boxes_imgs: list[Image]) -> None:
         raise NotImplementedError

@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS figures (
 );
 
 CREATE TABLE IF NOT EXISTS markdowns (
-    documentId UUID REFERENCES documents(id),
+    pageId UUID REFERENCES pages(id),
     content VARCHAR NOT NULL
 );
