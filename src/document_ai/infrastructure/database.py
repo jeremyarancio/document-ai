@@ -54,12 +54,12 @@ class DuckDBService(IDBService):
         ).fetchall()
         return [
             StoredDocument(
-                name=row[1],
+                name=filename,
                 pdf_url="",
-                storage_path=Path(row[2]),
-                id_=DocumentId(row[0]),
+                storage_path=Path(storage_path),
+                id_=DocumentId(id_),
             )
-            for row in rows
+            for id_, filename, storage_path in rows
         ]
 
     def add_markdowns(self, markdowns: list[Markdown]) -> None:

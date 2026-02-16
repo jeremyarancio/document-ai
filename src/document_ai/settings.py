@@ -13,7 +13,7 @@ class StorageSettings(BaseModel):
 
 class DocumentSourceSettings(BaseModel):
     query: str = "Deepseek"
-    limit: int = 10
+    limit: int = 2
 
 
 class DBSettings(BaseModel):

@@ -34,11 +34,11 @@ class ParserService:
                 # Entities -> DB
                 page = Page(document_id=document.id_, n=page_n)
                 pages.append(page)
-                markdowns.append(Markdown(page_id=document.id_, content=content))
+                markdowns.append(Markdown(page_id=page.id_, content=content))
                 figures.extend(
                     [
                         Figure(page_id=page.id_, n=figure_n)
-                        for figure_n, _ in enumerate(figure_imgs)
+                        for figure_n, _ in enumerate(page_figure_imgs)
                     ]
                 )
                 # Images -> Storage
@@ -47,9 +47,12 @@ class ParserService:
 
             database_service.add_pages(pages=pages)
             database_service.add_markdowns(markdowns=markdowns)
-            database_service.add_figures(figures=figures)
 
             storage_service.store_page_with_boxes_imgs(
                 pages=pages, page_with_boxes_imgs=page_with_boxes_imgs
             )
-            storage_service.store_figure_imgs(figures=figures, figure_imgs=figure_imgs)
+            if figure_imgs:
+                database_service.add_figures(figures=figures)
+                storage_service.store_figure_imgs(
+                    figures=figures, figure_imgs=figure_imgs
+                )

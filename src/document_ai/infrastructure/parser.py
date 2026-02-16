@@ -30,7 +30,7 @@ class DeepseekOCRParser(IParserService):
         self.figurer_dir = "images/"
 
         # Artifacts
-        self.page_with_boxes_path = "result_with_boxes.png"
+        self.page_with_boxes_path = "result_with_boxes.jpg"
         self.markdown_path = "result.mmd"
 
     def parse(self, page_img: Image.Image) -> tuple[str, Image, list[Image]]:
@@ -58,10 +58,10 @@ class DeepseekOCRParser(IParserService):
             with open(markdown_path, "r") as f:
                 markdown = f.read()
             with open(page_with_boxes_path, "rb") as f:
-                page_with_boxes_img = Image.open(f)
+                page_with_boxes_img = Image.open(f).copy()
             figure_imgs: list[Image.Image] = []
             for figure_path in Path(figure_dir).iterdir():
                 with figure_path.open("rb") as f:
-                    figure_imgs.append(Image.open(f))
+                    figure_imgs.append(Image.open(f).copy())
 
             return markdown, page_with_boxes_img, figure_imgs

@@ -14,12 +14,10 @@ class LocalStorageService(IStorageService):
 
         self.dir = dir
         self.doc_dir = dir / "documents"
-        self.page_dir = dir / "pages"
         self.page_with_boxes_dir = dir / "pages_with_boxes"
         self.fig_dir = dir / "figures"
 
         self.doc_dir.mkdir(exist_ok=True, parents=True)
-        self.page_dir.mkdir(exist_ok=True, parents=True)
         self.page_with_boxes_dir.mkdir(exist_ok=True, parents=True)
         self.fig_dir.mkdir(exist_ok=True, parents=True)
 
@@ -46,7 +44,7 @@ class LocalStorageService(IStorageService):
         self, figures: list[Figure], figure_imgs: list[Image]
     ) -> None:
         for figure, figure_img in zip(figures, figure_imgs, strict=True):
-            filepath = self.fig_dir / str(figure.id_)
+            filepath = self.fig_dir / (str(figure.id_) + ".png")
             with filepath.open("wb") as f:
                 figure_img.save(f)
 
@@ -54,6 +52,6 @@ class LocalStorageService(IStorageService):
         self, pages: list[Page], page_with_boxes_imgs: list[Image]
     ) -> None:
         for page, page_with_boxes_img in zip(pages, page_with_boxes_imgs, strict=True):
-            filepath = self.page_with_boxes_dir / str(page.id_)
+            filepath = self.page_with_boxes_dir / (str(page.id_) + ".png")
             with filepath.open("wb") as f:
                 page_with_boxes_img.save(f)

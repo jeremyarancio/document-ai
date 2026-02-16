@@ -23,7 +23,7 @@ class StoredDocument(Document):
 
 @dataclass
 class Markdown:
-    page_id: DocumentId
+    page_id: PageId
     content: str
 
 

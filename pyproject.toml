@@ -46,3 +46,6 @@ gpu = [
     "torch==2.6.0",
     "torchvision>=0.21.0",
 ]
+
+[tool.ty.rules]
+unused-type-ignore-comment = "ignore"
