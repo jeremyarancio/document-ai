@@ -10,9 +10,13 @@ class IStorageService(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def store_figure_imgs(self, figures: list[Figure], figure_imgs: list[Image]) -> None:
+    def store_figure_imgs(
+        self, figures: list[Figure], figure_imgs: list[Image]
+    ) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def store_page_with_boxes_imgs(self, pages:list[Page], pages_with_boxes_imgs: list[Image]) -> None:
+    def store_page_with_boxes_imgs(
+        self, pages: list[Page], page_with_boxes_imgs: list[Image]
+    ) -> None:
         raise NotImplementedError

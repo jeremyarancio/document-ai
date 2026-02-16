@@ -19,7 +19,7 @@ format:
     @echo "✅ Format complete!"
 
 # Run type-check and format before committing
-pre-commit: type-check format
+pre-commit: format type-check
     @echo "🚀 Pre-commit checks passed!"
 
 # Run all SQL migrations against the DuckDB database

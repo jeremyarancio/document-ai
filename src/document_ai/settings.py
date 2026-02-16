@@ -19,6 +19,9 @@ class DocumentSourceSettings(BaseModel):
 class DBSettings(BaseModel):
     path: Path = REPO_DIR / "data/duck.db"
     document_table_name: str = "documents"
+    figure_table_name: str = "figures"
+    markdown_table_name: str = "markdowns"
+    page_table_name: str = "pages"
 
 
 class Settings(BaseSettings):

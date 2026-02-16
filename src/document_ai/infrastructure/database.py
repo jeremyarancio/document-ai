@@ -1,7 +1,13 @@
 from pathlib import Path
 import duckdb
 from document_ai.application.ports.database import IDBService
-from document_ai.domain.document import DocumentId, Markdown, StoredDocument
+from document_ai.domain.document import (
+    DocumentId,
+    Figure,
+    Markdown,
+    Page,
+    StoredDocument,
+)
 from document_ai.infrastructure.schemas.database import DocumentSchema
 
 
@@ -60,15 +66,45 @@ class DuckDBService(IDBService):
         try:
             self.con.begin()
             self.con.executemany(
-                f"""INSERT INTO {self.markdown_table_name} VALUES (?, ?, ?)""",
+                f"""INSERT INTO {self.markdown_table_name} VALUES (?, ?)""",
                 [
                     (
-                        doc.id_,
-                        doc.filename,
-                        doc.storage_path,
+                        md.page_id,
+                        md.content,
                     )
-                    for doc in document_schemas
+                    for md in markdowns
                 ],
+            )
+            self.con.commit()
+        except Exception:
+            self.con.rollback()
+            raise
+
+    def add_pages(self, pages: list[Page]) -> None:
+        try:
+            self.con.begin()
+            self.con.executemany(
+                f"""INSERT INTO {self.page_table_name} VALUES (?, ?, ?)""",
+                [
+                    (
+                        page.id_,
+                        page.document_id,
+                        page.n,
+                    )
+                    for page in pages
+                ],
+            )
+            self.con.commit()
+        except Exception:
+            self.con.rollback()
+            raise
+
+    def add_figures(self, figures: list[Figure]) -> None:
+        try:
+            self.con.begin()
+            self.con.executemany(
+                f"""INSERT INTO {self.figure_table_name} VALUES (?, ?, ?)""",
+                [(figure.id_, figure.page_id, figure.n) for figure in figures],
             )
             self.con.commit()
         except Exception:

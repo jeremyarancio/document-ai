@@ -14,7 +14,6 @@ class ParserService:
         database_service: IDBService,
         parser_service: IParserService,
     ) -> None:
-
         documents = database_service.get_all_documents()
         for document in documents:
             # We save data and images respectively in db and storage per document iteration
@@ -26,7 +25,7 @@ class ParserService:
             figure_imgs: list[Image] = []
 
             page_imgs = pdf2image.convert_pdf_to_images(filepath=document.storage_path)
-            
+
             for page_n, page_img in enumerate(page_imgs):
                 content, page_with_boxes_img, page_figure_imgs = parser_service.parse(
                     page_img=page_img
@@ -35,14 +34,13 @@ class ParserService:
                 # Entities -> DB
                 page = Page(document_id=document.id_, n=page_n)
                 pages.append(page)
-                markdowns.append(Markdown(document_id=document.id_, text=content))
+                markdowns.append(Markdown(page_id=document.id_, content=content))
                 figures.extend(
                     [
                         Figure(page_id=page.id_, n=figure_n)
                         for figure_n, _ in enumerate(figure_imgs)
                     ]
                 )
-
                 # Images -> Storage
                 page_with_boxes_imgs.append(page_with_boxes_img)
                 figure_imgs.extend(page_figure_imgs)
@@ -50,9 +48,8 @@ class ParserService:
             database_service.add_pages(pages=pages)
             database_service.add_markdowns(markdowns=markdowns)
             database_service.add_figures(figures=figures)
-            
+
             storage_service.store_page_with_boxes_imgs(
-                pages=pages, pages_with_boxes_imgs=page_with_boxes_imgs
+                pages=pages, page_with_boxes_imgs=page_with_boxes_imgs
             )
             storage_service.store_figure_imgs(figures=figures, figure_imgs=figure_imgs)
-

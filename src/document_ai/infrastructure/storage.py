@@ -4,7 +4,7 @@ import httpx
 from PIL.Image import Image
 
 from document_ai.application.ports.storage import IStorageService
-from document_ai.domain.document import Document, StoredDocument
+from document_ai.domain.document import Document, Figure, Page, StoredDocument
 
 
 class LocalStorageService(IStorageService):
@@ -27,7 +27,9 @@ class LocalStorageService(IStorageService):
         stored_documents: list[StoredDocument] = []
         for document in documents:
             filename = document.name.lower() + ".pdf"
-            response = httpx.get(document.pdf_url, follow_redirects=True)
+            response = httpx.get(
+                document.pdf_url, follow_redirects=True
+            )  # NOTE: It should be out of the Storage Responsibility
             filepath = self.doc_dir / filename
             with filepath.open("wb") as f:
                 f.write(response.content)
@@ -39,3 +41,19 @@ class LocalStorageService(IStorageService):
                 )
             )
         return stored_documents
+
+    def store_figure_imgs(
+        self, figures: list[Figure], figure_imgs: list[Image]
+    ) -> None:
+        for figure, figure_img in zip(figures, figure_imgs, strict=True):
+            filepath = self.fig_dir / str(figure.id_)
+            with filepath.open("wb") as f:
+                figure_img.save(f)
+
+    def store_page_with_boxes_imgs(
+        self, pages: list[Page], page_with_boxes_imgs: list[Image]
+    ) -> None:
+        for page, page_with_boxes_img in zip(pages, page_with_boxes_imgs, strict=True):
+            filepath = self.page_with_boxes_dir / str(page.id_)
+            with filepath.open("wb") as f:
+                page_with_boxes_img.save(f)
