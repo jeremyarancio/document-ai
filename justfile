@@ -4,6 +4,17 @@ db_path := "data/duck.db"
 default:
     @just --choose
 
+# Install system dependencies and set up the project
+init:
+    @echo "Installing duckdb CLI..."
+    @which duckdb > /dev/null 2>&1 || (curl -fsSL https://install.duckdb.org | sh)
+    @echo "Setting up Python environment with uv..."
+    uv sync
+    @mkdir -p data/storage
+    @echo "Running migrations..."
+    @just migrate
+    @echo "Setup complete! Run 'just' to see available recipes."
+
 # Run type checking with ty
 type-check:
     @echo "🔍 Running type checks..."
