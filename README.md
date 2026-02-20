@@ -2,7 +2,8 @@
 
 A pipeline for downloading academic papers from arXiv and extracting structured content using vision-language models. Built with [DeepSeek-OCR-2](https://huggingface.co/deepseek-ai/DeepSeek-OCR-2) as the default OCR engine, but designed with a ports & adapters architecture to support any document AI model.
 
-![alt text](assets/image.png)
+<img width="800" height="478" alt="image" src="https://github.com/user-attachments/assets/76046000-0a59-4400-a086-e5d16bb2f060" />
+
 
 ## What it does
 
